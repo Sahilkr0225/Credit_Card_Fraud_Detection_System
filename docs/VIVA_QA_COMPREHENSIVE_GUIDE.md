@@ -201,3 +201,4 @@ Our `VelocityMonitor` ([`src/security/velocity_monitor.py`](file:///D:/Credit_Ca
 | **Member 1 (ML Core)** | Data Ingestion, EDA, Preprocessing, Supervised Models, Anomaly Detection, Real-Time Prediction API, Model Evaluation Notebook | `load_data.py`, `preprocessing.py`, `train_supervised.py`, `train_unsupervised.py`, `predict.py`, `01_eda.ipynb`, `02_model_evaluation.ipynb`, 27 Unit Tests |
 | **Member 2 (Security & UI)** | Telecom SIM-Swap Rules, Geo-Velocity Rules, OTP Tracking, Velocity Monitor, Attack Simulator, Streamlit Dashboard UI | `sim_swap_engine.py`, `velocity_monitor.py`, `otp_monitor.py`, `device_location_rules.py`, `simulator.py`, `dashboard.py`, 30 Unit Tests |
 | **Shared Integration** | Architectural Boundary, API Contract, Unified Risk Engine | `docs/API_CONTRACT.md`, `src/risk_engine.py`, 57/57 Unified Tests Passing |
+

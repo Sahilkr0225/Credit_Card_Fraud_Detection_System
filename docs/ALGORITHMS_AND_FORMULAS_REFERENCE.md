@@ -278,3 +278,4 @@ Where:
   $$\text{Cost} = (19 \times \$500) + (15 \times \$25) = \$9,500 + \$375 = \mathbf{\$9,875.00}$$
 - **Net Operational Financial Savings:**
   $$\text{Savings} = \$38,700 - \$9,875 = \mathbf{\$28,825.00} \quad \mathbf{(74.5\% \text{ Cost Reduction})}$$
+
