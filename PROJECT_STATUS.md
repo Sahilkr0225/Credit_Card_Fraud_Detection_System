@@ -19,6 +19,7 @@
 | **Supervised Model Unit Tests** | **Member 1 (ML)** | Completed (Phase 2) | `tests/test_supervised_models.py` (5/5 Passed) |
 | **Unsupervised Anomaly Detection** | **Member 1 (ML)** | Completed (Phase 3) | `src/models/train_unsupervised.py`, `models/isolation_forest.joblib` |
 | **Unsupervised Model Unit Tests** | **Member 1 (ML)** | Completed (Phase 3) | `tests/test_unsupervised_models.py` (3/3 Passed) |
+| **Model Evaluation & Metric Analysis** | **Member 1 (ML)** | Completed (Phase 4) | `notebooks/02_model_evaluation.ipynb` |
 | **ML Prediction Interface & API** | **Member 1 (ML)** | Completed (Phase 5) | `src/models/predict.py` |
 | **Prediction Interface Unit Tests** | **Member 1 (ML)** | Completed (Phase 5) | `tests/test_predict.py` (5/5 Passed) |
 | **Synthetic Event Generation** | **Member 2 (Security)** | Completed | `src/security/simulator.py`, `app/simulator/transaction_generator.py` |
