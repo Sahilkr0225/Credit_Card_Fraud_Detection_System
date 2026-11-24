@@ -2,7 +2,7 @@
 
 **Project:** Intelligent Credit Card Fraud Detection and Risk Assessment System  
 **Current Branch:** `feature/phase2-supervised-classification`  
-**Current Phase:** Phase 2 (ML) & Member 2 (Security) Merged -> Ready for Phase 3  
+**Current Phase:** Phase 1-3 & Phase 5 ML Core Complete; Live Streamlit Dashboard Integrated (57/57 Tests Passed)  
 **Last Updated:** November 24, 2026  
 
 ---
@@ -17,19 +17,20 @@
 | **Data & Preprocessing Unit Tests** | **Member 1 (ML)** | Completed | `tests/test_load_data.py`, `tests/test_preprocessing.py` (14/14 Passed) |
 | **Supervised Classification (LR, RF)** | **Member 1 (ML)** | Completed (Phase 2) | `src/models/train_supervised.py`, `models/best_fraud_model.joblib` |
 | **Supervised Model Unit Tests** | **Member 1 (ML)** | Completed (Phase 2) | `tests/test_supervised_models.py` (5/5 Passed) |
-| **Unsupervised Anomaly Detection** | **Member 1 (ML)** | Next Up (Phase 3) | `src/models/train_unsupervised.py` |
-| **Model Evaluation & Metric Analysis** | **Member 1 (ML)** | Planned (Phase 4) | `notebooks/02_model_evaluation.ipynb` |
-| **ML Prediction Interface & API** | **Member 1 (ML)** | Planned (Phase 5) | `src/models/predict.py` |
+| **Unsupervised Anomaly Detection** | **Member 1 (ML)** | Completed (Phase 3) | `src/models/train_unsupervised.py`, `models/isolation_forest.joblib` |
+| **Unsupervised Model Unit Tests** | **Member 1 (ML)** | Completed (Phase 3) | `tests/test_unsupervised_models.py` (3/3 Passed) |
+| **ML Prediction Interface & API** | **Member 1 (ML)** | Completed (Phase 5) | `src/models/predict.py` |
+| **Prediction Interface Unit Tests** | **Member 1 (ML)** | Completed (Phase 5) | `tests/test_predict.py` (5/5 Passed) |
 | **Synthetic Event Generation** | **Member 2 (Security)** | Completed | `src/security/simulator.py`, `app/simulator/transaction_generator.py` |
 | **SIM Swap Detection Engine** | **Member 2 (Security)** | Completed | `src/security/sim_swap_engine.py`, `app/security/sim_swap_engine.py` |
 | **OTP Failure Monitoring** | **Member 2 (Security)** | Completed | `src/security/otp_monitor.py`, `app/security/otp_monitor.py` |
 | **Velocity & Carding Detection** | **Member 2 (Security)** | Completed | `src/security/velocity_monitor.py`, `app/security/velocity_monitor.py` |
 | **Device & Location Rules** | **Member 2 (Security)** | Completed | `src/security/device_location_rules.py`, `app/security/device_location_rules.py` |
 | **Security Signals Aggregator** | **Member 2 (Security)** | Completed | `src/security/signals_engine.py` |
-| **Streamlit Interactive Dashboard** | **Member 2 (Security)** | Completed | `app/dashboard.py`, `app/components/` |
+| **Streamlit Interactive Dashboard** | **Integrated** | Completed & Live | `app/dashboard.py`, `app/components/` |
 | **Security Unit Tests (30/30 Passed)** | **Member 2 (Security)** | Completed | `tests/test_sim_swap_engine.py`, `tests/test_velocity_monitor.py`, `tests/test_otp_monitor.py`, `tests/test_device_location_rules.py`, `tests/test_simulator.py`, `tests/test_risk_engine.py` |
 | **API Contract Specification** | **Shared** | Completed (v1.0.0) | `docs/API_CONTRACT.md` |
-| **Unified Risk Assessment Engine** | **Shared** | Scaffolded / Integrating | `src/risk_engine.py`, `core/risk_engine.py` |
+| **Unified Risk Assessment Engine** | **Shared** | Completed & Integrated | `src/risk_engine.py`, `core/risk_engine.py` |
 
 ---
 
