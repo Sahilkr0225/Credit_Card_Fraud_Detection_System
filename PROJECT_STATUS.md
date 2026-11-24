@@ -1,8 +1,8 @@
 # Project Status & Milestone Tracker
 
 **Project:** Intelligent Credit Card Fraud Detection and Risk Assessment System  
-**Current Branch:** `develop`  
-**Current Phase:** Phase 1 Completed -> Ready for Phase 2  
+**Current Branch:** `feature/phase2-supervised-classification`  
+**Current Phase:** Phase 2 Completed -> Ready for Phase 3  
 **Last Updated:** November 23, 2026  
 
 ---
@@ -14,9 +14,10 @@
 | **Dataset Acquisition & Validation** | **Member 1 (ML)** | Completed | `data/raw/creditcard.csv`, `src/data/load_data.py` |
 | **Exploratory Data Analysis (EDA)** | **Member 1 (ML)** | Completed | `notebooks/01_eda.ipynb` |
 | **Data Preprocessing & Splitting** | **Member 1 (ML)** | Completed | `src/data/preprocessing.py` |
-| **Data & Preprocessing Unit Tests** | **Member 1 (ML)** | Completed | `tests/test_load_data.py`, `tests/test_preprocessing.py` (11/11 Passed) |
-| **Supervised Classification (LR, RF)** | **Member 1 (ML)** | Next Up (Phase 2) | `src/models/train_supervised.py` |
-| **Unsupervised Anomaly Detection** | **Member 1 (ML)** | Planned (Phase 3) | `src/models/train_unsupervised.py` |
+| **Data & Preprocessing Unit Tests** | **Member 1 (ML)** | Completed | `tests/test_load_data.py`, `tests/test_preprocessing.py` (14/14 Passed) |
+| **Supervised Classification (LR, RF)** | **Member 1 (ML)** | Completed (Phase 2) | `src/models/train_supervised.py`, `models/best_fraud_model.joblib` |
+| **Supervised Model Unit Tests** | **Member 1 (ML)** | Completed (Phase 2) | `tests/test_supervised_models.py` (5/5 Passed, Total 19/19) |
+| **Unsupervised Anomaly Detection** | **Member 1 (ML)** | Next Up (Phase 3) | `src/models/train_unsupervised.py` |
 | **Model Evaluation & Metric Analysis** | **Member 1 (ML)** | Planned (Phase 4) | `notebooks/02_model_evaluation.ipynb` |
 | **ML Prediction Interface & API** | **Member 1 (ML)** | Planned (Phase 5) | `src/models/predict.py` |
 | Synthetic Event Generation | Member 2 (Security) | Independent / Teammate | External to ML repo |
@@ -29,53 +30,22 @@
 
 ---
 
-## 2. Phase 1 Implementation Summary (Member 1)
+## 2. Phase 2 Implementation Summary (Member 1)
 
-All Phase 1 requirements have been successfully built, tested, and verified:
+### Supervised Classification Benchmark Results
+Trained on 227,845 records and evaluated on 56,962 untouched holdout test records (98 fraud cases):
 
-### Step 1: Repository Audit
-- Current branch: `develop` (clean, up to date).
-- Project skeleton initialized: `src/data/`, `notebooks/`, `tests/`, `docs/`, `data/raw/`, `data/processed/`, `models/`.
-- Git protection: `.gitignore` configured to prevent committing raw data, virtual environments, or compiled files.
-- Python 3.10 virtual environment (`venv`) established with all dependencies pinned.
+| Candidate Model | CV PR-AUC | Test PR-AUC | Test ROC-AUC | Recall | Precision | F1-Score | FP | FN |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Logistic Regression (Class-Weighted)** | 0.7411 | 0.7175 | 0.9720 | 91.84% | 6.09% | 0.1142 | 1,388 | 8 |
+| **Logistic Regression (SMOTE Pipeline)** | 0.7412 | 0.7251 | 0.9712 | 91.84% | 5.89% | 0.1106 | 1,439 | 8 |
+| **Random Forest (Class-Weighted)** 🏆 | **0.8215** | **0.8311** | 0.9766 | 80.61% | **84.04%** | **0.8229** | **15** | 19 |
+| **Random Forest (SMOTE Pipeline)** | 0.8150 | 0.8258 | **0.9792** | 85.71% | 51.22% | 0.6412 | 80 | 14 |
 
-### Step 2: Data Loading Module (`src/data/load_data.py`)
-- Automated validation of expected 31 columns (`Time`, `V1`–`V28`, `Amount`, `Class`).
-- Pure read-only loading logic; original raw dataset is never altered.
-- Informative `FileNotFoundError` guidance if raw CSV is missing.
-- Verified on live Kaggle dataset: 284,807 rows, 31 columns, 0 nulls, 492 fraud cases (0.1727%).
+### Artifacts Saved to `models/`:
+- `best_fraud_model.joblib`: Winning Random Forest model.
+- `robust_scaler.joblib`: Preprocessing scaler for real-time inference.
+- `evaluation_summary.json`: Complete benchmark metrics and confusion matrices.
 
-### Step 3: Exploratory Data Analysis (`notebooks/01_eda.ipynb`)
-- Interactive analysis of dataset dimensions, missing cells, and duplicate rows.
-- Quantitative class distribution visualization (log-scale bar chart and proportion donut chart).
-- Transaction amount analysis (demonstrating bimodal distribution of fraud and rationale for `RobustScaler`).
-- Diurnal time analysis (demonstrating off-peak fraud activity).
-- Correlation analysis of PCA components (`V14`, `V17`, `V12`, `V10` vs `V4`, `V11`).
-- Viva defense section on the Accuracy Paradox with mathematical proof.
-
-### Step 4: Preprocessing Pipeline (`src/data/preprocessing.py`)
-- Independent target and feature separation.
-- Stratified train/test splitting (80/20) preserving the exact 0.17% fraud prevalence.
-- Leakage-free `RobustScaler` fitting strictly on `X_train`.
-- Dual imbalance handling strategies:
-  1. Balanced cost-sensitive class weights for standard loss functions.
-  2. Train-only SMOTE oversampling (test data remains 100% authentic).
-- Reproducible execution with fixed `random_state=42`.
-
-### Step 5: Unit Tests (`tests/test_load_data.py`, `tests/test_preprocessing.py`)
-- **11 out of 11 tests passing**:
-  - `test_missing_file_raises_filenotfound`: PASSED
-  - `test_validate_schema_success`: PASSED
-  - `test_validate_schema_missing_column`: PASSED
-  - `test_validate_schema_invalid_target`: PASSED
-  - `test_summarize_dataset`: PASSED
-  - `test_separate_features_and_target`: PASSED
-  - `test_stratified_split_preserves_ratio`: PASSED
-  - `test_no_data_leakage_in_scaling`: PASSED
-  - `test_smote_applied_only_to_train`: PASSED
-  - `test_reproducibility`: PASSED
-  - `test_balanced_class_weights`: PASSED
-
-### Step 6: Documentation
-- Updated `README.md` with complete architecture, setup commands, execution instructions, and viva answers.
-- Updated `PROJECT_STATUS.md` with milestone checklist.
+### Test Coverage:
+- **19 out of 19 tests passing (100% pass rate in 7.69s)**.

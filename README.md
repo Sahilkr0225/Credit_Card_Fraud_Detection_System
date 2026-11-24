@@ -101,11 +101,9 @@ pytest -v
 python src/data/load_data.py
 ```
 
-### Running Exploratory Data Analysis (EDA)
-Launch Jupyter or open directly in VS Code:
+### Running Supervised Model Training & Benchmarking
 ```bash
-# Open notebooks/01_eda.ipynb in VS Code
-# Kernel: Python 3.10 (Fraud Detection venv)
+python src/models/train_supervised.py
 ```
 
 ---
@@ -131,7 +129,7 @@ The `Amount` feature has severe positive skew with values ranging from 0 to over
 ## 6. Project Roadmap
 
 - [x] **Phase 1:** Repository Audit, Data Loading, EDA, Preprocessing Pipeline, and Unit Tests.
-- [ ] **Phase 2:** Supervised Baseline Classification (Logistic Regression vs. Random Forest with SMOTE and Class Weighting).
+- [x] **Phase 2:** Supervised Baseline Classification (Logistic Regression vs. Random Forest with SMOTE and Class Weighting).
 - [ ] **Phase 3:** Unsupervised Anomaly Detection (Isolation Forest).
 - [ ] **Phase 4:** Model Evaluation & Precision-Recall Calibration.
 - [ ] **Phase 5:** ML Prediction Service Interface (`src/models/predict.py`).
